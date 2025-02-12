@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#format partition
+mkfs.fat -F32 /dev/nvme0n1p1
+mkfs.btrfs -f /dev/nvme0n1p2
+
+#create subvol for btrfs
+mount /dev/nvme0n1p2 /mnt #mount the btrfs partition first
+btrfs su cr /mnt/@
+btrfs su cr /mnt/@home
+btrfs su cr /mnt/@swap #only if you use swapfile
+btrfs su cr /mnt/@snapshots #for storing snapshots
+btrfs su cr /mnt/@tmp #(optional) only store temporary files, better exclude from snapshots to make it smaller
+btrfs su cr /mnt/@var_log #essential to boot from read-only snapshots through grub-btrfs
+btrfs su cr /mnt/@var_tmp #(optional) only store temporary files
+btrfs su cr /mnt/@var_cache #(optional) only store temporary files
+#btrfs su cr /mnt/@libvirt #for storing virtual machine data
+umount /mnt
+
+#mounting partition
+mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@ /dev/nvme0n1p2 /mnt
+mkdir -p /mnt/{boot/efi,home,swap,.snapshots,tmp,var/{log,tmp,cache,lib/libvirt}}
+mkdir -p /mnt/media/user/Data #this one is my ntfs partition mount point
+
+mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@home /dev/nvme0n1p2 /mnt/home
+mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@tmp /dev/nvme0n1p2 /mnt/tmp
+mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_log /dev/nvme0n1p2 /mnt/var/log
+mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_tmp /dev/nvme0n1p2 /mnt/var/tmp
+mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_cache /dev/nvme0n1p2 /mnt/var/cache
+#mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@libvirt /dev/nvme0n1p2 /mnt/var/lib/libvirt
+mount /dev/nvme0n1p1 /mnt/boot/efi
+mount /dev/nvme0n1p5 /mnt/media/user/Data #this one is my ntfs partition
+
+#change /tmp permission
+chmod 1777 /tmp #this is the normal permission for /tmp
+
+#activate swapfile
+mount -o subvol=@swap /dev/nvme0n1p2 /mnt/swap
+touch /mnt/swap/swapfile
+chmod 600 /mnt/swap/swapfile
+chattr +C /mnt/swap/swapfile
+dd if=/dev/zero of=/mnt/swap/swapfile bs=1M count=8192
+mkswap /mnt/swap/swapfile
+swapon /mnt/swap/swapfile
+
+#activate swap partition (only if you did't use swapfile)
+#swapon /dev/$yourswappartition

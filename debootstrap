@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#debian debootstrap install script
+#using btrfs scheme partition with subvol @ @home @swap and @snapshots
+
+#partitioning (edit the file below)
+chmod +x debootstrap-partition
+./debootstrap-partition
+
+#install base system with debootstrap
+apt install debootstrap arch-install-scripts -y
+debootstrap --arch=amd64 --variant=minbase --include=zstd,btrfs-progs,ntfs-3g,locales stable /mnt
+
+#set fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+
+#copy some data
+cp /etc/resolv.conf /mnt/etc/resolv.conf
+
+#preparing second script inside chroot
+cp debootstrap-chroot /mnt/debootstrap-chroot
+chmod +x /mnt/debootstrap-chroot
+
+#chrooting
+mount --make-rslave --rbind /proc /mnt/proc && mount --make-rslave --rbind /sys /mnt/sys && mount --make-rslave --rbind /dev /mnt/dev && mount --make-rslave --rbind /run /mnt/run
+chroot /mnt /bin/bash ./debootstrap-chroot

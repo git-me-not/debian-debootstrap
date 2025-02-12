@@ -1,0 +1,61 @@
+#!/bin/bash
+
+#check your fstab
+cat /etc/fstab
+
+#set your hostname
+echo "unitbox" > /etc/hostname
+
+#set your localhost or shit (i don't understand)
+echo "127.0.0.1 localhost" >> /etc/hosts
+echo "::1       localhost" >> /etc/hosts
+echo "127.0.1.1 unitbox.localdomain unitbox" >> /etc/hosts
+
+#set other things
+ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+hwclock --systohc
+sed -i '165s/.//' /etc/locale.gen #this should be en_US one
+sed -i '280s/.//' /etc/locale.gen #this one should be id_ID. you can remove this
+locale-gen
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+
+#configure sourcelist
+echo -e "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+
+#updating sourcelist
+apt update
+
+#installing package
+./debootstrap-package
+
+#installing grub
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Debian #change the directory to /boot/efi is you mounted the EFI partition at /boot/efi
+update-grub
+
+#create user
+useradd -m ari
+usermod -aG video,audio ari
+
+#create password for root and user
+echo "password root"
+passwd
+echo "password user"
+passwd ari
+
+#managing su privileges (sudo)
+#apt install sudo
+#adduser (username) sudo
+
+#managing su privileges (doas and resurrecting the wheel group)
+apt install doas
+sed -i '15s/.//' /etc/pam.d/su #resurrecting the wheel group, baby
+addgroup --system wheel #adding wheel group
+adduser ari wheel
+echo "permit :wheel as root" > /etc/doas.conf #configuring doas
+chown -c root:root /etc/doas.conf
+chmod -c 0400 /etc/doas.conf
+ln -s /usr/bin/doas /usr/bin/sudo #linking doas to sudo just in case
+
+echo "check fstab, and edit the swap part if you use swapfile (you don't need any fancy compression or other option like the other subvol)"
