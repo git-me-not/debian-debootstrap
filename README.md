@@ -1,3 +1,3 @@
 # Debian Debootstrap Install
+this is the documentation for debian debootstrap install.
 
-I literally have no idea what I'm doing right now.
