@@ -29,7 +29,7 @@ mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_tmp 
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_cache /dev/nvme0n1p2 /mnt/var/cache
 #mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@libvirt /dev/nvme0n1p2 /mnt/var/lib/libvirt
 mount /dev/nvme0n1p1 /mnt/boot/efi
-mount /dev/nvme0n1p5 /mnt/media/user/Data #this one is my ntfs partition
+#mount /dev/nvme0n1p5 /mnt/media/user/Data #this one is my ntfs partition
 
 #change /tmp permission
 chmod 1777 /tmp #this is the normal permission for /tmp
