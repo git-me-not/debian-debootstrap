@@ -1,0 +1,89 @@
+#! bin/bash
+
+#setting up display with minimal xorg packages
+apt-get install --no-install-recommends \
+xserver-xorg-core \
+xserver-xorg-video-intel \
+xserver-xorg-input-evdev \
+xserver-xorg-input-kbd \
+xserver-xorg-input-synaptics \
+xserver-xorg-input-mouse \
+xserver-xorg-libinput \
+libinput-tools \
+x11-xserver-utils \
+x11-xkb-utils \
+x11-utils \
+xinit \
+xbacklight \
+dbus-x11 \
+xdg-utils \
+xdg-user-dirs \
+xsettingsd -y
+
+#setting up bspwm
+apt-get install --no-install-recommends \
+bspwm \
+polybar \
+compton \
+hsetroot \
+rofi \
+slim \
+kitty \
+i3lock \
+pipewire-alsa \
+pipewire-jack \
+pipewire-pulse \
+pipewire-audio \
+wireplumber \
+libspa-0.2-bluetooth -y
+
+#extras for smoother experience
+apt-get install --no-install-recommends \
+gparted \
+gvfs \
+gvfs-backends \
+gvfs-fuse \
+htop \
+dunst \
+evince \
+scrot \
+nautilus \
+policykit-1-gnome \
+evince \
+gucharmap \
+geany \
+file-roller \
+cmus -y
+
+#general package for device
+apt-get install --no-install-recommends \
+android-tools-adb \
+android-tools-fastboot \
+ca-certificates \
+dosfstools \
+ffmpeg \
+ranger \
+vlc \
+file \
+git \
+wget \
+gzip \
+highlight \
+less \
+udevil \
+libreoffice-writer \
+libreoffice-gtk3 \
+libreoffice-impress \
+firefox-esr \
+gimp \
+neovim \
+mtp-tools \
+viewnior \
+p7zip-full \
+libnotify-bin \
+tlp \
+libmtp-common \
+libmtp-runtime \
+youtube-dl \
+caca-utils \
+fonts-jetbrains-mono -y
