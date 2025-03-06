@@ -32,7 +32,7 @@ mount /dev/nvme0n1p1 /mnt/boot/efi
 #mount /dev/nvme0n1p5 /mnt/media/user/Data #this one is my ntfs partition
 
 #change /tmp permission
-chmod 1777 /tmp #this is the normal permission for /tmp
+chmod 1777 /mnt/tmp #this is the normal permission for /tmp
 
 #activate swapfile
 mount -o subvol=@swap /dev/nvme0n1p2 /mnt/swap
