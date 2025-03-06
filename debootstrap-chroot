@@ -4,12 +4,12 @@
 cat /etc/fstab
 
 #set your hostname
-echo "unitbox" > /etc/hostname
+echo "masterbox" > /etc/hostname
 
 #set your localhost or shit (i don't understand)
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
-echo "127.0.1.1 unitbox.localdomain unitbox" >> /etc/hosts
+echo "127.0.1.1 masterbox.localdomain masterbox" >> /etc/hosts
 
 #set other things
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
@@ -35,14 +35,14 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Debia
 update-grub
 
 #create user
-useradd -m ari
+useradd -m aria
 usermod -aG video,audio ari
 
 #create password for root and user
 echo "password root"
 passwd
 echo "password user"
-passwd ari
+passwd aria
 
 #managing su privileges (sudo)
 #apt install sudo
