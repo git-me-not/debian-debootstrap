@@ -58,4 +58,5 @@ chown -c root:root /etc/doas.conf
 chmod -c 0400 /etc/doas.conf
 ln -s /usr/bin/doas /usr/bin/sudo #linking doas to sudo just in case
 
-echo "check fstab, and edit the swap part if you use swapfile (you don't need any fancy compression or other option like the other subvol)"
+echo "check fstab, and edit the swap part if you use swapfile (you don't need any fancy compression or other option like the other subvol). \
+also remove subvolid option from the fstab, to make it easier if you need to manually rollback (the arch linux way)"
