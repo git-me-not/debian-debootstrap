@@ -17,8 +17,9 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp /etc/resolv.conf /mnt/etc/resolv.conf
 
 #preparing the rest of the script inside chroot
-cp debootstrap-chroot /mnt/debootstrap-chroot
-cp debootstrap-package /mnt/debootstrap-package
+#cp debootstrap-chroot /mnt/debootstrap-chroot
+#cp debootstrap-package /mnt/debootstrap-package
+mount --bind /masterbox /mnt/
 
 #chrooting
 mount --make-rslave --rbind /proc /mnt/proc && mount --make-rslave --rbind /sys /mnt/sys && mount --make-rslave --rbind /dev /mnt/dev && mount --make-rslave --rbind /run /mnt/run
