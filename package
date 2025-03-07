@@ -53,6 +53,7 @@ evince \
 gucharmap \
 geany \
 file-roller \
+zsh \
 cmus -y
 
 #general package for device
