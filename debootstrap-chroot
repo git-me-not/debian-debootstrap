@@ -28,7 +28,32 @@ deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free
 apt update
 
 #installing package
-./debootstrap-package
+#installing init system and driver-related (intel) packages
+apt-get install --no-install-recommends \
+systemd \
+systemd-sysv \
+libpam-systemd \
+libsystemd0 \
+dialog \
+linux-image-amd64 \
+firmware-linux \
+firmware-intel-sound \
+firmware-iwlwifi \
+firmware-realtek \
+intel-microcode \
+i965-va-driver \
+acpi-support -y
+
+#installing other essential package (network etc)
+apt-get install --no-install-recommends \
+dhcpcd5 \
+iwd \
+iproute2 \
+iputils-ping \
+grub-efi \
+efibootmgr \
+os-prober \
+nano -y
 
 #installing grub
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Debian #change the directory to /boot/efi is you mounted the EFI partition at /boot/efi
