@@ -7,6 +7,7 @@
 ./debootstrap-partition
 
 #install base system with debootstrap
+apt update
 apt install debootstrap arch-install-scripts -y
 debootstrap --arch=amd64 --variant=minbase --include=zstd,btrfs-progs,ntfs-3g,locales stable /mnt
 
@@ -17,9 +18,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cp /etc/resolv.conf /mnt/etc/resolv.conf
 
 #preparing the rest of the script inside chroot
-#cp debootstrap-chroot /mnt/debootstrap-chroot
-#cp debootstrap-package /mnt/debootstrap-package
-mount --bind /masterbox /mnt/
+touch /mnt/debootstrap-chroot
+mount --bind debootstrap-chroot /mnt/debootstrap-chroot
 
 #chrooting
 mount --make-rslave --rbind /proc /mnt/proc && mount --make-rslave --rbind /sys /mnt/sys && mount --make-rslave --rbind /dev /mnt/dev && mount --make-rslave --rbind /run /mnt/run
