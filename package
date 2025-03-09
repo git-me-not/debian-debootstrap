@@ -16,8 +16,11 @@ x11-utils \
 xinit \
 xbacklight \
 dbus-x11 \
+dbus-user-session \
 xdg-utils \
 xdg-user-dirs \
+xdg-desktop-portal \
+rtkit \
 xsettingsd -y
 
 #setting up bspwm
