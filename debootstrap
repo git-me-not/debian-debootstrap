@@ -24,3 +24,10 @@ mount --bind debootstrap-chroot /mnt/debootstrap-chroot
 #chrooting
 mount --make-rslave --rbind /proc /mnt/proc && mount --make-rslave --rbind /sys /mnt/sys && mount --make-rslave --rbind /dev /mnt/dev && mount --make-rslave --rbind /run /mnt/run
 chroot /mnt /bin/bash ./debootstrap-chroot
+
+#cleanup
+umount /mnt/debootstrap-chroot
+rm /mnt/debootstrap-chroot
+
+echo "check fstab, and edit the swap part if you use swapfile (you don't need any fancy compression or other option like the other subvol). \
+also remove subvolid option from the fstab, to make it easier if you need to manually rollback (the arch linux way)"
