@@ -27,7 +27,7 @@ xsettingsd -y
 apt-get install --no-install-recommends \
 bspwm \
 polybar \
-compton \
+picom \
 hsetroot \
 rofi \
 slim \
@@ -61,8 +61,8 @@ cmus -y
 
 #general package for device
 apt-get install --no-install-recommends \
-android-tools-adb \
-android-tools-fastboot \
+adb \
+fastboot \
 ca-certificates \
 dosfstools \
 ffmpeg \
