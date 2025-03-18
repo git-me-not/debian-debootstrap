@@ -1,0 +1,45 @@
+#making sure everything is up to date
+apt update && apt upgrade
+
+#installing necessary package
+apt install snapper inotify-tools git make ca-certificates
+
+#setting up environment to fit the arch way
+cd /
+umount .snapshots
+rm -r .snapshots
+snapper -c root create-config /
+btrfs subvolume delete /.snapshots
+mkdir /.snapshots
+mount -av
+
+#setting up snapper
+systemctl disable snapper-boot.timer
+snapper -c root set-config 'TIMELINE_CREATE=no'
+snapper -c root set-config 'ALLOW_GROUPS=wheel'
+snapper -c root set-config 'SYNC_ACL=yes'
+snapper -c root set-config "NUMBER_LIMIT=10"
+snapper -c root set-config "NUMBER_LIMIT_IMPORTANT=10"
+snapper -c root set-config "TIMELINE_MIN_AGE=1800"
+snapper -c root set-config "TIMELINE_LIMIT_HOURLY=5"
+snapper -c root set-config "TIMELINE_LIMIT_DAILY=7"
+snapper -c root set-config "TIMELINE_LIMIT_WEEKLY=0"
+snapper -c root set-config "TIMELINE_LIMIT_MONTHLY=0"
+snapper -c root set-config "TIMELINE_LIMIT_YEARLY=0"
+
+#setting up grub-btrfs
+cd
+git clone https://github.com/Antynea/grub-btrfs.git
+cd grub-btrfs
+make
+make install
+
+#starting automatic grub-btrfs daemon
+systemctl enable grub-btrfsd
+
+#creating the first snapshot
+snapper -c root create --description "default minimal install"
+
+#cleanup
+cd ..
+rm -rf grub-btrfs/
