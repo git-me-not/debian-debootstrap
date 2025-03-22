@@ -1,0 +1,18 @@
+#make sure system is up-to-date
+doas apt update &&doas apt upgrade
+
+#install package
+doas apt install --no-install-recommends \
+libvirt-daemon-system \
+virt-manager \
+qemu-kvm \
+qemu-utils \
+libvirt-clients \
+virtinst \
+bridge-utils \
+dnsmasq \
+ovmf \
+qemu-system-x86 \
+virt-viewer \
+spice-client-gtk \
+gir1.2-spiceclientgtk-3.0
