@@ -16,3 +16,8 @@ qemu-system-x86 \
 virt-viewer \
 spice-client-gtk \
 gir1.2-spiceclientgtk-3.0
+
+#add user to groups
+doas adduser $(whoami) kvm
+doas adduser $(whoami) libvirt
+doas adduser $(whoami) libvirt-qemu
