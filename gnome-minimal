@@ -3,6 +3,24 @@ doas apt update && apt upgrade
 
 #install debian minimal
 doas apt install --no-install-recommends \
+pipewire-alsa \
+pipewire-jack \
+pipewire-pulse \
+pipewire-audio \
+wireplumber \
+libspa-0.2-bluetooth \
+gnome-core \
+network-manager-gnome \
+network-manager-openvpn \
+network-manager-openvpn-gnome \
+firefox-esr \
+gnome-tweaks \
+gnome-shell-extension-manager \
+
+
+
+#wl-clipboard \
+#xsel
 #xserver-xorg-core \
 #xserver-xorg-video-intel \
 #xserver-xorg-input-evdev \
@@ -23,28 +41,3 @@ doas apt install --no-install-recommends \
 #xdg-desktop-portal \
 #rtkit \
 #xsettingsd \
-pipewire-alsa \
-pipewire-jack \
-pipewire-pulse \
-pipewire-audio \
-wireplumber \
-libspa-0.2-bluetooth \
-gnome-core \
-network-manager-gnome \
-firefox-esr \
-#nautilus \
-#gnome-session \
-#eog \
-#evince \
-#gnome-session \
-#gnome-shell-extensions \
-#gnome-system-monitor \
-#gnome-terminal \
-#gnome-tweaks \
-#nautilus \
-#nautilus-wipe \
-#network-manager-gnome \
-#network-manager-openvpn \
-#network-manager-openvpn-gnome \
-#wl-clipboard \
-#xsel
