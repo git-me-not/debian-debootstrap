@@ -22,7 +22,10 @@ touch /mnt/debootstrap-chroot
 mount --bind debootstrap-chroot /mnt/debootstrap-chroot
 
 #chrooting
-mount --make-rslave --rbind /proc /mnt/proc && mount --make-rslave --rbind /sys /mnt/sys && mount --make-rslave --rbind /dev /mnt/dev && mount --make-rslave --rbind /run /mnt/run
+mount --make-rslave --rbind /proc /mnt/proc
+mount --make-rslave --rbind /sys /mnt/sys
+mount --make-rslave --rbind /dev /mnt/dev
+mount --make-rslave --rbind /run /mnt/run
 chroot /mnt /bin/bash ./debootstrap-chroot
 
 #cleanup
