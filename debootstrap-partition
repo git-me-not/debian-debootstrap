@@ -35,6 +35,9 @@ mount /dev/nvme0n1p3 /mnt/media/user/Data #this one is my ntfs partition
 #change /tmp permission
 chmod 1777 /mnt/tmp #this is the normal permission for /tmp
 
+#disable COW on libvirt
+chattr +C /mnt/var/lib/libvirt
+
 #activate swapfile
 mount -o subvol=@swap /dev/nvme0n1p2 /mnt/swap
 touch /mnt/swap/swapfile
