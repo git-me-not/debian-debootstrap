@@ -40,10 +40,8 @@ chattr +C /mnt/var/lib/libvirt
 
 #activate swapfile
 mount -o subvol=@swap /dev/nvme0n1p2 /mnt/swap
-touch /mnt/swap/swapfile
+btrfs filesystem mkswapfile --size 8g /mnt/swap/swapfile
 chmod 600 /mnt/swap/swapfile
-chattr +C /mnt/swap/swapfile
-dd if=/dev/zero of=/mnt/swap/swapfile bs=1M count=8192
 mkswap /mnt/swap/swapfile
 swapon /mnt/swap/swapfile
 
