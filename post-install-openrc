@@ -1,0 +1,45 @@
+#everything that I need to do after installing
+#the base system. Including setting up:
+#changing grub theme
+#setting up openrc-init
+#start agetty under openrc
+#configure agetty to start last
+#adding Intel module to initramfs
+#setting up simple command for power off,etc.
+#snapper + grub-btrfs
+
+#changing grub theme
+# 1. doas nano /etc/grub.d/05_debian_theme
+# 2. change the theme to monochromatic instead
+
+#setting up openrc-init
+# 1. doas nano /etc/default/grub
+# 2. add GRUB_CMDLINE_LINUX_DEFAULT="init=/sbin/openrc-init rw quiet"
+# 3. doas /sbin/update-grub
+
+#start agetty under openrc
+# 1. cd /etc/init.d/
+# 2. ln -s agetty agetty.tty$n (n = 1-6)
+# 3. doas /sbin/rc-update add agetty.tty$n default
+
+#configure agetty to start last
+# 1. doas nano agetty.tty$n
+# 2. add depend () {after *}
+
+#adding Intel module to initramfs
+#this will preload Intel graphic driver early
+# to prevent blank screen from udev
+# 1. doas nano /etc/initramfs-tools/modules
+# 2. add "i915" (without quotation mark)
+# 3. doas update-initramfs
+
+#add this line to doas.conf so that wheel don't need
+#doas to use simple command to power off, etc.
+# 1. doas chmod -c 0600 /etc/doas.conf # change permission to rw
+# 2. add these line:
+permit nopass wheel as root cmd /sbin/openrc-shutdown -r now
+permit nopass wheel as root cmd /sbin/openrc-shutdown -p now
+permit nopass wheel as root cmd /sbin/openrc-shutdown -H now
+
+#snapper + grub-btrfs 
+#please refer to snapper file
