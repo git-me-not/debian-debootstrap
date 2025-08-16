@@ -1,0 +1,9 @@
+#minimal firmware driver for Thinkpad t480
+apt-get install --no-install-recommends \
+linux-image-amd64 \
+firmware-linux-nonfree \
+firmware-intel-sound \
+firmware-iwlwifi \
+intel-microcode \
+intel-media-va-driver-non-free \
+  
