@@ -6,6 +6,7 @@ firmware-intel-sound \
 firmware-iwlwifi \
 intel-microcode \
 intel-media-va-driver-non-free \
+wireless-regdb \
 
 #setting up display with minimal xorg packages
 apt-get install --no-install-recommends \
