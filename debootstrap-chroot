@@ -15,10 +15,9 @@ echo "127.0.1.1 masterbox.localdomain masterbox" >> /etc/hosts
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 hwclock --systohc
 sed -i '165s/.//' /etc/locale.gen #this should be en_US one
-sed -i '281s/.//' /etc/locale.gen #this one should be id_ID. you can remove this
+sed -i '280s/.//' /etc/locale.gen #this one should be id_ID. you can remove this
 locale-gen
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "LANG=id_ID.UTF-8" >> /etc/locale.conf
+echo "LANG=en_US.UTF-8" >> /etc/default/locale
 
 #configure sourcelist
 echo -e "deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware
