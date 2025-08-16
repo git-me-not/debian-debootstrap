@@ -31,7 +31,7 @@
 # to prevent blank screen from udev
 # 1. doas nano /etc/initramfs-tools/modules
 # 2. add "i915" (without quotation mark)
-# 3. doas update-initramfs
+# 3. doas update-initramfs -u
 
 #add this line to doas.conf so that wheel don't need
 #doas to use simple command to power off, etc.
