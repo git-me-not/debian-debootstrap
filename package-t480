@@ -6,4 +6,27 @@ firmware-intel-sound \
 firmware-iwlwifi \
 intel-microcode \
 intel-media-va-driver-non-free \
-  
+
+#setting up display with minimal xorg packages
+apt-get install --no-install-recommends \
+xserver-xorg-core \
+xserver-xorg-video-intel \
+xserver-xorg-input-libinput \
+libinput-tools \
+x11-xserver-utils \
+x11-xkb-utils \
+x11-utils \
+xinit \
+dbus-x11 \
+dbus-user-session \
+xdg-utils \
+xdg-user-dirs \
+rtkit \
+xsettingsd
+brightnessctl
+
+#optional
+#apt-get install --no-install-recommends \
+#xserver-xorg-video-intel \
+#xdg-desktop-portal
+#portal for flatpak/snap support
