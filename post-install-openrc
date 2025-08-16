@@ -41,5 +41,10 @@ permit nopass wheel as root cmd /sbin/openrc-shutdown -r now
 permit nopass wheel as root cmd /sbin/openrc-shutdown -p now
 permit nopass wheel as root cmd /sbin/openrc-shutdown -H now
 
-#snapper + grub-btrfs 
+#snapper + grub-btrfs
+#before installing grub-btrfs, edit Makefile
+# 1. cd grub-btrfs
+# 2. nano Makefile
+# 3. change systemd ? = false
+# 4. change openrc ? = true
 #please refer to snapper file
