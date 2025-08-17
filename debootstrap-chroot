@@ -17,7 +17,21 @@ hwclock --systohc
 sed -i '165s/.//' /etc/locale.gen #this should be en_US one
 sed -i '280s/.//' /etc/locale.gen #this one should be id_ID. you can remove this
 locale-gen
-echo "LANG=en_US.UTF-8" >> /etc/default/locale
+cat > /etc/default/locale <<HEREDOC
+LANG="en_US.UTF-8"
+LC_COLLATE=C
+LC_ADDRESS="id_ID.UTF-8"
+LC_CTYPE="id_ID.UTF-8"
+LC_IDENTIFICATION="id_ID.UTF-8"
+LC_MEASUREMENT="id_ID.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="id_ID.UTF-8"
+LC_NAME="id_ID.UTF-8"
+LC_NUMERIC="id_ID.UTF-8"
+LC_PAPER="id_ID.UTF-8"
+LC_TELEPHONE="id_ID.UTF-8"
+LC_TIME="en_US.UTF-8"
+HEREDOC
 
 #configure sourcelist
 echo -e "deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware
