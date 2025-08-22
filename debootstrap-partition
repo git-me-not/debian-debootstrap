@@ -36,7 +36,7 @@ mount /dev/nvme0n1p3 /mnt/media/user/data #this one is my ntfs partition
 chmod 1777 /mnt/tmp #this is the normal permission for /tmp
 
 #if you prefer /tmp on tmpfs instead
-#make sure to uncheck @tmp mount command
+#make sure to add comment on @tmp mount command
 mount -t tmpfs -o defaults,noatime,size=2G,mode=1777
 
 #disable COW on libvirt
