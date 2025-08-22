@@ -9,13 +9,10 @@
 #install base system with debootstrap
 apt update
 apt install debootstrap arch-install-scripts -y
-debootstrap --arch=amd64 --variant=minbase --include=zstd,btrfs-progs,ntfs-3g,locales stable /mnt
+debootstrap --arch=amd64 --variant=minbase --include=locales stable /mnt
 
 #set fstab
 genfstab -U /mnt >> /mnt/etc/fstab
-
-#copy some data
-cp /etc/resolv.conf /mnt/etc/resolv.conf
 
 #preparing the rest of the script inside chroot
 touch /mnt/debootstrap-chroot
