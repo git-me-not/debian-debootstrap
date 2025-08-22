@@ -1,53 +1,19 @@
-#!/usr/bin/env /lib/init/init-d-script
+#install necessary package
+apt install --no-install-recommends zram-tools
 
-### BEGIN INIT INFO
-# Provides:          zramswap
-# Required-Start:    $syslog $time $remote_fs
-# Required-Stop:     $syslog $time $remote_fs
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Linux zramswap setup
-# Description:       Debian init script for zramswap
-### END INIT INFO
+#edit zram config
+echo -e "ALGO=zstd\nPERCENT=60" | sudo tee -a /etc/default/zramswap
 
-DAEMON=/usr/sbin/zramswap
-PIDFILE=none
+#systemd
+service zramswap reload
 
-_is_active() {
-	$DAEMON status >/dev/null 2>&1
-	return $?
-}
+#openrc/sysvinit
 
-do_start_prepare() {
-	if _is_active; then
-		log_warning_msg "$NAME is already active"
-		exit 3
-	fi
-}
+#copy init scripts
+cp /etc/init.d/zramswap /etc/init.d/zramswap
 
-do_start_cmd_override() {
-	$DAEMON start
-}
+#make it executable
+chmod +x /etc/init.d/zramswap
 
-do_stop_prepare() {
-	if ! _is_active; then
-		log_warning_msg "$NAME is not active"
-		exit 3
-	fi
-}
-
-do_stop_cmd_override() {
-	$DAEMON stop
-}
-
-do_status_override() {
-	$DAEMON status
-}
-
-do_restart_override() {
-	if _is_active; then
-		$DAEMON restart
-	else
-		$DAEMON start
-	fi
-}
+#start zram at boot
+rc-update add zramswap default
