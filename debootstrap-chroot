@@ -56,6 +56,9 @@ firmware-iwlwifi \
 firmware-realtek \
 intel-microcode \
 i965-va-driver \
+zstd \
+btrfs-progs\
+ntfs-3g \
 acpi-support -y
 
 #installing other essential package (network etc)
