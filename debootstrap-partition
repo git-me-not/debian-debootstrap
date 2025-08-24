@@ -37,7 +37,7 @@ chmod 1777 /mnt/tmp #this is the normal permission for /tmp
 
 #if you prefer /tmp on tmpfs instead
 #make sure to add comment on @tmp mount command
-mount -t tmpfs -o defaults,noatime,size=2G,mode=1777
+#mount -t tmpfs -o defaults,noatime,size=2G,mode=1777 tmpfs /mnt/tmp
 
 #disable COW on libvirt
 chattr +C /mnt/var/lib/libvirt
