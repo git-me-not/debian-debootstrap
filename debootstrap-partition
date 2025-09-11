@@ -20,7 +20,7 @@ umount /mnt
 #mounting partition
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@ /dev/nvme0n1p2 /mnt
 mkdir -p /mnt/{boot/efi,home,swap,.snapshots,tmp,var/{log,tmp,cache,lib/libvirt}}
-mkdir -p /mnt/media/user/data #this one is my ntfs partition mount point
+mkdir -p /mnt/media/user/Shared #this one is my ntfs partition mount point
 
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@home /dev/nvme0n1p2 /mnt/home
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@snapshots /dev/nvme0n1p2 /mnt/.snapshots
@@ -30,7 +30,7 @@ mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_cach
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@libvirt /dev/nvme0n1p2 /mnt/var/lib/libvirt
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@tmp /dev/nvme0n1p2 /mnt/tmp
 mount /dev/nvme0n1p1 /mnt/boot/efi
-mount /dev/nvme0n1p3 /mnt/media/user/data #this one is my ntfs partition
+mount /dev/nvme0n1p3 /mnt/media/user/Shared #this one is my ntfs partition
 
 #change /tmp permission
 chmod 1777 /mnt/tmp #this is the normal permission for /tmp
