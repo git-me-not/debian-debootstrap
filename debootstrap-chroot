@@ -71,6 +71,7 @@ dhcpcd5 \
 iwd \
 iproute2 \
 iputils-ping \
+linux-sysctl-defaults \
 grub-efi \
 efibootmgr \
 os-prober \
