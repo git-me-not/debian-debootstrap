@@ -9,7 +9,7 @@
 #install base system with debootstrap
 apt update
 apt install debootstrap arch-install-scripts -y
-debootstrap --arch=amd64 --variant=minbase --include=locales stable /mnt
+debootstrap --arch=amd64 --variant=minbase --include=locales,util-linux-extra stable /mnt
 
 #set fstab
 genfstab -U /mnt >> /mnt/etc/fstab
