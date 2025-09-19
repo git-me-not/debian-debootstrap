@@ -19,7 +19,7 @@ umount /mnt
 
 #mounting partition
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@ /dev/nvme0n1p2 /mnt
-mkdir -p /mnt/{boot/efi,home,swap,.snapshots,tmp,var/{log,tmp,cache,lib/libvirt}}
+mkdir -p /mnt/{boot/efi,home,swap,.snapshots,var/{log,tmp,cache,lib/libvirt}}
 mkdir -p /mnt/media/user/Shared #this one is my ntfs partition mount point
 
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@home /dev/nvme0n1p2 /mnt/home
