@@ -28,12 +28,14 @@ mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_log 
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_tmp /dev/nvme0n1p2 /mnt/var/tmp
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@var_cache /dev/nvme0n1p2 /mnt/var/cache
 mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@libvirt /dev/nvme0n1p2 /mnt/var/lib/libvirt
-mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@tmp /dev/nvme0n1p2 /mnt/tmp
 mount /dev/nvme0n1p1 /mnt/boot/efi
 mount /dev/nvme0n1p3 /mnt/media/user/Shared #this one is my ntfs partition
 
+#Legacy (debian Trixie use tmpfs for /tmp by default)
+#mount -o noatime,compress=zstd,space_cache=v2,ssd,discard=async,subvol=@tmp /dev/nvme0n1p2 /mnt/tmp
+
 #change /tmp permission
-chmod 1777 /mnt/tmp #this is the normal permission for /tmp
+#chmod 1777 /mnt/tmp #this is the normal permission for /tmp
 
 #if you prefer /tmp on tmpfs instead
 #make sure to add comment on @tmp mount command
@@ -44,7 +46,7 @@ chattr +C /mnt/var/lib/libvirt
 
 #activate swapfile
 mount -o subvol=@swap /dev/nvme0n1p2 /mnt/swap
-btrfs filesystem mkswapfile --size 8g /mnt/swap/swapfile
+btrfs filesystem mkswapfile --size 4g /mnt/swap/swapfile
 chmod 600 /mnt/swap/swapfile
 mkswap /mnt/swap/swapfile
 swapon /mnt/swap/swapfile
