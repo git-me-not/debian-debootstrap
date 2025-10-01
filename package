@@ -57,6 +57,7 @@ gucharmap \
 geany \
 file-roller \
 zsh \
+openssh-client \
 cmus -y
 
 #general package for device
