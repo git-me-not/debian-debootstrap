@@ -11,10 +11,10 @@ btrfs su cr /mnt/@home
 btrfs su cr /mnt/@swap #only if you use swapfile
 btrfs su cr /mnt/@snapshots #for storing snapshots
 btrfs su cr /mnt/@var_log #essential to boot from read-only snapshots through grub-btrfs
-btrfs su cr /mnt/@var_tmp #(optional) only store temporary files
+btrfs su cr /mnt/@var_tmp #(optional) only store temporary files. considering removing this
 btrfs su cr /mnt/@var_cache #(optional) only store temporary files
 btrfs su cr /mnt/@libvirt #for storing virtual machine data
-btrfs su cr /mnt/@tmp #(optional) only store temporary files, better exclude from snapshots to make it smaller
+btrfs su cr /mnt/@tmp #(optional) only store temporary files, better exclude from snapshots to make it smaller. well, just use tmpfs lol.
 umount /mnt
 
 #mounting partition
