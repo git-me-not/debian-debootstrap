@@ -10,3 +10,7 @@ what I mean with "the most minimal install" is the fact that even systemd won't 
 \
 for rollback, refer to https://www.dwarmstrong.org/btrfs-snapshots-rollbacks/
 gotta make the documentation later
+
+#TO-DO
+1. If using ```ifupdown``` then install ```dhcpcd-base```
+2. As of Forky you need to manually install ```adduser``` 
