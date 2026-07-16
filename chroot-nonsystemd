@@ -21,4 +21,4 @@ apt-get install --no-install-recommends openrc sysvinit-core elogind libpam-elog
 apt-get install --no-install-recommends sysv-rc sysvinit-core elogind libpam-elogind orphan-sysvinit-scripts
 
 #runit
-apt-get install --no-install-recommends runit runit-init elogind libpam-elogind orphan-sysvinit-scripts
+apt-get install --no-install-recommends runit runit-init runit-services elogind libpam-elogind orphan-sysvinit-scripts
