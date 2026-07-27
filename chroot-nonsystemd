@@ -4,7 +4,7 @@ Package: systemd
 Pin: release *
 Pin-Priority: -1
  
-Package: *systemd*
+Package: systemd*
 Pin: release *
 Pin-Priority: -1
  
