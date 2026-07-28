@@ -17,7 +17,7 @@ HEREDOC
 ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 hwclock --systohc
 sed -i '165s/.//' /etc/locale.gen #this should be en_US one
-sed -i '280s/.//' /etc/locale.gen #this one should be id_ID. you can remove this
+sed -i '281s/.//' /etc/locale.gen #this one should be id_ID. you can remove this
 locale-gen
 cat > /etc/default/locale <<HEREDOC
 LANG="en_US.UTF-8"
