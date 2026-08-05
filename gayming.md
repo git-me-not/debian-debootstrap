@@ -19,17 +19,17 @@ From main user:
 ```doas chmod 711 /media/Storage```
 3. Create a directory to store my private data \
 ```mkdir /media/Storage/data```
-4. Set the permission of the folder and everything inside \
+4. Set the permission of the directory and everything inside \
 ```doas chown -R $main_user:$main_user /media/Storage/data``` \
 ```doas chmod 700 /media/storage/data``` 
 5. Create a directory to store my gayming data \
 ```mkdir /media/Storage/SteamLibrary```
-6. Set the permission of the folder and everything inside \
+6. Set the permission of the directory and everything inside \
 ```doas chown -R $gayming_user:$gayming_user /media/Storage/SteamLibrary``` \
 ```doas chmod 700 /media/storage/SteamLibrary```
 7. Done
 \
 \
 Note: \
-711 : Owner can do anyhing with the file and directory, other user can only execute it (can access but not browse). \
-700 : Owner can do anyhing with the file and directory, other user can't do anything at all.
+711 : Owner can do anything with the file and directory, other users can only execute it (can access but not browse). \
+700 : Owner can do anything with the file and directory, other users can't do anything at all.
